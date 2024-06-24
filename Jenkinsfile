@@ -23,7 +23,6 @@ pipeline {
             steps {
 checkout([$class: 'GitSCM', branches: [[name: '*/mainster']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '', url: 'https://github.com/gitkul/jenkinsandargocd.git']]])  
                 }
-            }
         }
   
     // Building Docker images
