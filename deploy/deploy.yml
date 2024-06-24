@@ -7,7 +7,7 @@ metadata:
 spec:
   type: LoadBalancer
   ports:
-  - port: 8800
+  - port: 80
     targetPort: 80
   selector:
     app: nginx-html-app
