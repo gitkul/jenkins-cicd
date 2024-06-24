@@ -4,7 +4,8 @@ pipeline {
         AWS_ACCOUNT_ID="767397705569"
         AWS_DEFAULT_REGION="ap-southeast-2"
         IMAGE_REPO_NAME="demo"
-        IMAGE_TAG="v1"
+        IMAGE_TAG="1.0.0"
+        IMAGE=nginx
         REPOSITORY_URI = "767397705569.dkr.ecr.ap-southeast-2.amazonaws.com/demo"
     }
    
@@ -29,7 +30,7 @@ pipeline {
     stage('Building image') {
       steps{
         script {
-          dockerImage = docker.build "${IMAGE_REPO_NAME}:${IMAGE_TAG}"
+          dockerImage = docker.build "${IMAGE_REPO_NAME}:${IMAGE}:${IMAGE_TAG}"
         }
       }
     }
@@ -38,8 +39,8 @@ pipeline {
     stage('Pushing to ECR') {
      steps{  
          script {
-                sh """docker tag ${IMAGE_REPO_NAME}:${IMAGE_TAG} ${REPOSITORY_URI}:$IMAGE_TAG"""
-                sh """docker push ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}:${IMAGE_TAG}"""
+                sh """docker tag ${IMAGE_REPO_NAME}:${IMAGE}:${IMAGE_TAG} ${REPOSITORY_URI}:$IMAGE_TAG"""
+                sh """docker push ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}:${IMAGE}:${IMAGE_TAG}"""
          }
         }
       }
