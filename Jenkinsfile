@@ -49,6 +49,7 @@ pipeline {
             GIT_USER_NAME = "gitkul"
         }
       steps {
+             withCredentials([string(credentialsId: 'jenkin-argo-token', variable: 'GITHUB_TOKEN')]) {
                 sh '''
                     git config user.email "die4kuldeep@yahoo.com"
                     git config user.name "gitkul"
@@ -56,9 +57,11 @@ pipeline {
                     sed -i "s/imagetag/${BUILD_NUMBER}/" /var/lib/jenkins/workspace/jenkin-argocd/deploy/deploy.yml
                     git add /var/lib/jenkins/workspace/jenkin-argocd/deploy/deploy.yml
                     git commit -m "Updated values yaml with build image number ${BUILD_NUMBER}"
-                    git push git@github.com:gitkul/jenkins-cicd HEAD:main
+                    git push https://github.com/gitkul/jenkins-cicd HEAD:main
                 '''
-            }
+           }
+         }
+
         }
     }
 }
