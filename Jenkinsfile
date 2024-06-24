@@ -5,7 +5,7 @@ pipeline {
         AWS_DEFAULT_REGION="ap-southeast-2"
         IMAGE_REPO_NAME="demo"
         IMAGE_TAG="1.0.0"
-        IMAGE=nginx
+        IMAGE="nginx"
         REPOSITORY_URI = "767397705569.dkr.ecr.ap-southeast-2.amazonaws.com/demo"
     }
    
