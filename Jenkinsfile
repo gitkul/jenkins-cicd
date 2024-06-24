@@ -20,8 +20,8 @@ pipeline {
         }
         
         stage('Cloning Git') {
-            steps {
-checkout([$class: 'GitSCM', branches: [[name: '*/mainster']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '', url: 'https://github.com/gitkul/jenkinsandargocd.git']]])  
+             steps {
+ checkout([$class: 'GitSCM', branches: [[name: '*/main']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '', url: 'https://github.com/gitkul/jenkinsandargocd.git']]])  
                 }
         }
   
