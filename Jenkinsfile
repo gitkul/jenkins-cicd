@@ -21,8 +21,7 @@ pipeline {
         
         stage('Cloning Git') {
             steps {
-                script {
-                    checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/gitkul/jenkinsandargocd.git']])
+checkout([$class: 'GitSCM', branches: [[name: '*/mainster']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '', url: 'https://github.com/gitkul/jenkinsandargocd.git']]])  
                 }
             }
         }
