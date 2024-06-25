@@ -4,7 +4,7 @@ pipeline {
         AWS_ACCOUNT_ID="767397705569"
         AWS_DEFAULT_REGION="ap-southeast-2"
         IMAGE_REPO_NAME="demo"
-        IMAGE_TAG="${BUILD_NUMBER}"
+        IMAGE_TAG="v1"
         REPOSITORY_URI = "767397705569.dkr.ecr.ap-southeast-2.amazonaws.com/demo"
     }
    
@@ -45,29 +45,6 @@ pipeline {
       }
 
 
-     stage('Update Values File for helm deployment') {
-        environment {
-            GIT_REPO_NAME = "jenkins-cicd"
-            GIT_USER_NAME = "gitkul"
-        }
-      steps {
-             withCredentials([string(credentialsId: 'github-token', variable: 'GITHUB_TOKEN')]) {
-                sh '''
-                    git config user.email "die4kuldeep@yahoo.com"
-                    git config user.name "gitkul"
-                    BUILD_NUMBER=${BUILD_NUMBER}
-                    sed -i "s/767397705569.dkr.ecr.ap-southeast-2.amazonaws.com/767397705569.dkr.ecr.ap-southeast-2.amazonaws.com/demo:${BUILD_NUMBER}/"                 deploy/deploy.yml
-
-                    git add deploy/deploy.yml
-                    git commit -m "Updated  with build image number ${BUILD_NUMBER}"
-
-
-                    git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main
-                '''
-           }
-         }
-
-        }
 
     }
 }
