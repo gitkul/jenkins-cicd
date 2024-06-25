@@ -30,7 +30,7 @@ spec:
     spec:
       containers:
       - name: nginx-html-app
-        image: 767397705569.dkr.ecr.ap-southeast-2.amazonaws.com/demo:v1
+        image: 767397705569.dkr.ecr.ap-southeast-2.amazonaws.com/demo:v1.0
         imagePullPolicy: Always
         ports:
         - containerPort: 80
