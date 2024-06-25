@@ -44,6 +44,30 @@ pipeline {
         }
       }
 
+    stage('Update Values File for helm deployment') {
+        environment {
+            GIT_REPO_NAME = "jenkins-cicd"
+            GIT_USER_NAME = "gitkul"
+        }
+      steps {
+             withCredentials([string(credentialsId: 'github-token', variable: 'GITHUB_TOKEN')]) {
+                sh '''
+                    git config user.email "die4kuldeep@yahoo.com"
+                    git config user.name "gitkul"
+                    BUILD_NUMBER=${BUILD_NUMBER}
+                    sed -i "s/imagetag/${BUILD_NUMBER}/" deploy/deploy.yml
+                    git add deploy/deploy.yml
+                    git commit -m "Updated  with build image number ${BUILD_NUMBER}"
+
+
+                    git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main
+                '''
+           }
+         }
+
+        }
+
+
     }
 }
 
