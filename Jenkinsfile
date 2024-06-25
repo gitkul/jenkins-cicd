@@ -57,7 +57,8 @@ pipeline {
                     sed -i "s/imagetag/${BUILD_NUMBER}/" /var/lib/jenkins/workspace/jenkin-argocd/deploy/deploy.yml
                     git add /var/lib/jenkins/workspace/jenkin-argocd/deploy/deploy.yml
                     git commit -m "Updated values yaml with build image number ${BUILD_NUMBER}"
-                    git push https://github.com/gitkul/jenkins-cicd HEAD:main
+                    
+                    git push @github.com/${GIT_USER_NAME}/${GIT_REPO_NAME">https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main
                 '''
            }
          }
