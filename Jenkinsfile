@@ -51,7 +51,6 @@ pipeline {
       steps {
              withCredentials([string(credentialsId: 'github-token', variable: 'GITHUB_TOKEN')]) {
                 sh '''
-                    git pull https://github.com/gitkul/jenkins-cicd.git
                     git config user.email "die4kuldeep@yahoo.com"
                     git config user.name "gitkul"
                     BUILD_NUMBER=${BUILD_NUMBER}
@@ -60,7 +59,7 @@ pipeline {
                     git commit -m "Updated  with build image number ${BUILD_NUMBER}"
                     
                     
-                    git push @github.com/${GIT_USER_NAME}/${GIT_REPO_NAME">@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME"">@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME">https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main
+                    git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main
                 '''
            }
          }
