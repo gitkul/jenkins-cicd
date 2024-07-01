@@ -57,7 +57,7 @@ pipeline {
                     git config user.name "gitkul"
                     BUILD_NUMBER=${BUILD_NUMBER}
                     chmod -R 777 /var/lib/jenkins
-                    cp -rvf deployment.yml deploy/deploy.yml
+                    cp -rvf deployment.yml deploy/deployment.yml
                     
 
                     sed -i "s/imagetag/demo:${BUILD_NUMBER}/" deploy/deployment.yml
