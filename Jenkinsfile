@@ -52,6 +52,7 @@ pipeline {
       steps {
              withCredentials([string(credentialsId: 'github-token', variable: 'GITHUB_TOKEN')]) {
                 sh '''
+                    git pull https://github.com/gitkul/jenkins-cicd.git
                     git config user.email "die4kuldeep@yahoo.com"
                     git config user.name "gitkul"
                     BUILD_NUMBER=${BUILD_NUMBER}
