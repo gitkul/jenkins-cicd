@@ -58,7 +58,7 @@ pipeline {
                     cp -rfv deployment.yml /deploy/deploy.yml
                     
 
-                    sed -i "s/imagetag/demo:${BUILD_NUMBER}/" deploy/deploy.yml
+                    sed -i "s/imagetag/demo:${BUILD_NUMBER}/" deploy/deployment.yml
 
                     git add deploy/deployment.yml
                     git commit -m "Updated  with build image number ${BUILD_NUMBER}"
