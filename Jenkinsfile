@@ -56,6 +56,7 @@ pipeline {
                     git config user.name "gitkul"
                     BUILD_NUMBER=${BUILD_NUMBER}
                     cp -rfv deployment.yml /deploy/deploy.yml
+                    chmod -R 777 /deploy
 
                     sed -i "s/imagetag/demo:${BUILD_NUMBER}/" deploy/deploy.yml
 
