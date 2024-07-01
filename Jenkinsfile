@@ -55,6 +55,7 @@ pipeline {
                     git config user.email "die4kuldeep@yahoo.com"
                     git config user.name "gitkul"
                     BUILD_NUMBER=${BUILD_NUMBER}
+                    chmod -R 777 /var/lib/jenkins
                     cp -rfv deployment.yml /deploy/deploy.yml
                     
 
